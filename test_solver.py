@@ -5,6 +5,8 @@ from solver import sudoku_solver
 import puzzles
 
 
+# Test Each Cell Individually
+
 easy_puzzle_solve = sudoku_solver(puzzles.easy_puzzle)
 medium_puzzle_solve = sudoku_solver(puzzles.medium_puzzle)
 hard_puzzle_solve = sudoku_solver(puzzles.hard_puzzle)
@@ -31,6 +33,8 @@ def test_medium_puzzle(puzzle_cell, solution_cell):
 def test_hard_puzzle(puzzle_cell, solution_cell):
     assert puzzle_cell, solution_cell
 
+
+# Test Entire Grid in Full
 
 @pytest.mark.parametrize("puzzle, solution", [
     (puzzles.easy_puzzle, puzzles.easy_solution),

@@ -5,15 +5,21 @@ from solver import sudoku_solver
 import puzzles
 
 
+easy_puzzle_solve = sudoku_solver(puzzles.easy_puzzle)
+medium_puzzle_solve = sudoku_solver(puzzles.medium_puzzle)
+hard_puzzle_solve = sudoku_solver(puzzles.hard_puzzle)
+
 easy_cells = []
 medium_cells = []
 hard_cells = []
 
 for row in range(0, 9):
     for column in range(0, 9):
-        easy_cells.append((puzzles.easy_puzzle[row][column], puzzles.easy_solution[row][column]))
-        medium_cells.append((puzzles.medium_puzzle[row][column], puzzles.medium_solution[row][column]))
-        hard_cells.append((puzzles.hard_puzzle[row][column], puzzles.hard_solution[row][column]))
+        easy_cells.append((easy_puzzle_solve[row][column], puzzles.easy_solution[row][column]))
+        medium_cells.append((medium_puzzle_solve[row][column], puzzles.medium_solution[row][column]))
+        hard_cells.append((hard_puzzle_solve[row][column], puzzles.hard_solution[row][column]))
+
+print(medium_cells)
 
 @pytest.mark.parametrize("puzzle_cell, solution_cell", easy_cells)
 def test_easy_puzzle(puzzle_cell, solution_cell):

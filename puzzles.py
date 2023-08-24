@@ -31,6 +31,18 @@ easy_solution = [
 ]
 
 medium_puzzle = [
+    [None, None, None, None, None, None, 6, None, None],
+    [None, 2, None, 5, None, None, 7, None, None], 
+    [1, 7, None, None, None, 9, None, None, None],
+    [None, None, 5, None, 3, None, None, None, 8],
+    [None, None, None, None, 5, None, None, 6, None],
+    [None, None, None, None, 2, None, 4, 1, None],
+    [None, None, 4, None, 9, 8, None, 3, None],
+    [None, 9, 8, None, None, None, 2, None, 6],
+    [None, None, None, 4, None, None, None, None, None]
+]
+
+medium_solution = [
     [5, 4, 9, 3, 7, 2, 6, 8, 1],
     [8, 2, 6, 5, 4, 1, 7, 9, 3], 
     [1, 7, 3, 6, 8, 9, 5, 2, 4],
@@ -42,31 +54,7 @@ medium_puzzle = [
     [7, 1, 2, 4, 6, 3, 8, 5, 9]
 ]
 
-medium_solution = [
-    [None, None, None, None, None, None, 6, None, None],
-    [None, 2, None, 5, None, None, 7, None, None], 
-    [1, 7, None, None, None, 9, None, None, None],
-    [None, None, 5, None, 3, None, None, None, 8],
-    [None, None, None, None, 5, None, None, 6, None],
-    [None, None, None, None, 2, None, 4, 1, None],
-    [None, None, 4, None, 9, 8, None, 3, None],
-    [None, 9, 8, None, None, None, 2, None, 6],
-    [None, None, None, 4, None, None, None, None, None]
-]
-    
 hard_puzzle = [
-    [3, 7, 9, 6, 5, 2, 1, 8, 4],
-    [2, 5, 1, 8, 4, 7, 6, 9, 3],
-    [8, 6, 4, 9, 3, 1, 2, 5, 7],
-    [1, 3, 5, 4, 7, 8, 9, 6, 2],
-    [6, 9, 2, 3, 1, 5, 7, 4, 8],
-    [4, 8, 7, 2, 9, 6, 3, 1, 5],
-    [7, 4, 3, 1, 8, 9, 5, 2, 6],
-    [9, 2, 8, 5, 6, 3, 4, 7, 1],
-    [5, 1, 6, 7, 2, 4, 8, 3, 9]
-]
-    
-hard_solution = [
     [None, None, None, None, None, None, 1, None, None],
     [None, None, 1, None, 4, 7, 6, None, None],
     [None, 6, None, None, None, None, None, 5, None],
@@ -76,4 +64,16 @@ hard_solution = [
     [7, None, 3, 1, None, None, None, None, 6],
     [None, None, 8, None, 6, None, 4, None, 1],
     [None, None, None, None, 2, None, None, None, 9]
+]
+    
+hard_solution = [
+    [3, 7, 9, 6, 5, 2, 1, 8, 4],
+    [2, 5, 1, 8, 4, 7, 6, 9, 3],
+    [8, 6, 4, 9, 3, 1, 2, 5, 7],
+    [1, 3, 5, 4, 7, 8, 9, 6, 2],
+    [6, 9, 2, 3, 1, 5, 7, 4, 8],
+    [4, 8, 7, 2, 9, 6, 3, 1, 5],
+    [7, 4, 3, 1, 8, 9, 5, 2, 6],
+    [9, 2, 8, 5, 6, 3, 4, 7, 1],
+    [5, 1, 6, 7, 2, 4, 8, 3, 9]
 ]

@@ -19,8 +19,6 @@ for row in range(0, 9):
         medium_cells.append((medium_puzzle_solve[row][column], puzzles.medium_solution[row][column]))
         hard_cells.append((hard_puzzle_solve[row][column], puzzles.hard_solution[row][column]))
 
-print(medium_cells)
-
 @pytest.mark.parametrize("puzzle_cell, solution_cell", easy_cells)
 def test_easy_puzzle(puzzle_cell, solution_cell):
     assert puzzle_cell, solution_cell

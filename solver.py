@@ -208,6 +208,9 @@ def print_puzzle(solution):
     df = df.astype(int)
     df = df.replace(0, "_")
     print(df)
+    print()
+    empty_count = (df == '_').sum().sum()
+    print('empty cells:', empty_count)
     # for row in solution:
     #     print(row)
 

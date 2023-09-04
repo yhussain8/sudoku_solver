@@ -1,4 +1,6 @@
-from puzzles import easy_puzzle as puzzle
+import pandas as pd
+
+from puzzles import easy_puzzle, medium_puzzle, hard_puzzle
 
 
 def initialize_cell_index():
@@ -127,20 +129,113 @@ def initialize_grid(cell_index, puzzle):
     return grid
 
 
+def reduce_possible_values(grid, grid_groupings, grid_possible_values):
+    # print(type(grid))
+    for cell_id, cell_value in grid.items():
+        if cell_value is not None:
+            # grid_groupings.pop(cell_id)
+            grid_possible_values.pop(cell_id)
+    # print('grid')
+    # print(grid)
+    # print('grid_groupings')
+    # print(grid_groupings)
+    # print('grid_possible_values')
+    # print(grid_possible_values)
+    return grid_groupings, grid_possible_values
+
+
+def eliminate_possible_values(grid, grid_groupings, grid_possible_values):
+    # print(grid_possible_values)
+    # print('\n')
+    for grid_cell_id, grid_cell_value in grid.items():
+        if grid_cell_value is not None:
+            # consolidate into function
+            cell_neighbours = grid_groupings.get(grid_cell_id)
+            for cell_neighbour_id in cell_neighbours:
+                cell_neighbour_possible_values = grid_possible_values.get(cell_neighbour_id)
+                if cell_neighbour_possible_values:
+                    if grid_cell_value in cell_neighbour_possible_values:
+                        grid_possible_values[cell_neighbour_id].remove(grid_cell_value)
+    # print(grid_groupings)
+    return grid_possible_values
+
+
+def simple_elimination_loop(grid, grid_groupings, grid_possible_values):
+    # print(grid_possible_values)
+    grid_updated = True
+    while grid_updated:
+        grid_updated = False
+        for cell_id, cell_possible_values in grid_possible_values.items():
+            if len(cell_possible_values) == 1:
+                known_value = cell_possible_values[0]
+                grid[cell_id] = known_value
+                grid_updated = True
+                grid_possible_values.pop(cell_id)
+                # consolidate into function
+                cell_neighbours = grid_groupings.get(cell_id)
+                for cell_neighbour_id in cell_neighbours:
+                    cell_neighbour_possible_values = grid_possible_values.get(cell_neighbour_id)
+                    if cell_neighbour_possible_values:
+                        if known_value in cell_neighbour_possible_values:
+                            grid_possible_values[cell_neighbour_id].remove(known_value)
+                break
+        # loop through possible values
+        # if possible values == 1 then update grid with remaining value as a known value
+        # mark grid_updated = True
+        # remove the cell_id from possible values dictionary
+        # eliminate value from list of possible values for each cell neighbour
+        # identify list of cell neighbours for cell being updated with known value
+        # for each cell neighbours list remove the known value
+    # print(grid_possible_values)
+    # print(grid)
+    return grid, grid_possible_values
+
+
+def generate_solution(grid):
+    solution = []
+    for row_id in range(0, 9):
+        row = []
+        for column_id in range(0, 9):
+            cell_id = f'{row_id}_{column_id}'
+            row.append(grid[cell_id])
+        solution.append(row)
+    return solution
+
+
+def print_puzzle(solution):
+    df = pd.DataFrame(solution)
+    df = df.fillna(0)
+    df = df.astype(int)
+    df = df.replace(0, "_")
+    print(df)
+    # for row in solution:
+    #     print(row)
+
+
 def sudoku_solver(puzzle: list[list[int]]) -> list[list[int]]:
-    # grid = reduce_grid(grid)
+    print('Unsolved:\n')
+    print_puzzle(puzzle)
     cell_index = initialize_cell_index()
     grid_possible_values = initialize_grid_possible_values(cell_index)
     grid_groupings = initialize_grid_groupings(cell_index)
     grid = initialize_grid(cell_index, puzzle)
     # print(grid)
-
-    solution = puzzle
-    # solution = generate_solution(grid)
+    grid_groupings, grid_possible_values = reduce_possible_values(grid, grid_groupings, grid_possible_values)
+    grid_possible_values = eliminate_possible_values(grid, grid_groupings, grid_possible_values)
+    grid, grid_possible_values = simple_elimination_loop(grid, grid_groupings, grid_possible_values)
+    solution = generate_solution(grid)
+    # solution = puzzle
+    print("\nSolved:\n")
+    print_puzzle(solution)
     return solution
 
+print('\nEasy Puzzle\n')
+sudoku_solver(easy_puzzle)
+print('\nMedium Puzzle\n')
+sudoku_solver(medium_puzzle)
+print('\nHard Puzzle\n')
+sudoku_solver(hard_puzzle)
 
-sudoku_solver(puzzle)
 
 
 # test_cell_id = "7_5"
